@@ -28,7 +28,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon, favorite }) => {
           </p>
           <Link
             className='px-4 py-2 mt-5 text-xs font-semibold text-gray-100 border rounded-full'
-            href={`/dashboard/pokemon/${id}`}
+            href={`/dashboard/pokemons/${name}`}
           >
             Show more...
           </Link>

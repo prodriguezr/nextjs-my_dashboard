@@ -1,4 +1,4 @@
-import { Sidebar } from '@/components';
+import { Sidebar } from '@/common/components';
 
 export default function LayoutDashboard({
   children,
