@@ -1,5 +1,11 @@
 import { PokemonGrid, PokemonsResponse, SimplePokemon } from '@/pokemons';
 import { getPokemons } from '@/pokemons/services';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'List of Pokemons',
+  description: "List of pokemon's available",
+};
 
 export default async function PokemonsPage() {
   const pokemons = await getPokemons(151);
