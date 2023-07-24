@@ -1,18 +1,16 @@
 import { SimplePokemon } from '../interfaces';
-import PokemonCard from './PokemonCard';
+import { PokemonCard } from './PokemonCard';
 
-interface PokemonGridProps {
-  pokemons: SimplePokemon[];
+interface Props {
+  pokemons?: SimplePokemon[];
 }
 
-const PokemonGrid: React.FC<PokemonGridProps> = ({ pokemons }) => {
+export const PokemonGrid = ({ pokemons = [] }: Props) => {
   return (
-    <div className='flex flex-wrap items-center justify-center gap-10'>
+    <div className='flex flex-wrap items-center justify-center gap-4'>
       {pokemons.map((pokemon) => (
         <PokemonCard key={pokemon.id} pokemon={pokemon} />
       ))}
     </div>
   );
 };
-
-export default PokemonGrid;

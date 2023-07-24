@@ -1,7 +1,6 @@
-export interface IMenuItem {
-  path: string;
-  icon: JSX.Element;
+export interface MenuItem {
+  href: string;
+  icon: React.ReactNode;
   title: string;
   subtitle: string;
-  disabled?: boolean;
 }

@@ -1,1 +1,1 @@
-export * from './MenuItem';
+export type { MenuItem } from './MenuItem';

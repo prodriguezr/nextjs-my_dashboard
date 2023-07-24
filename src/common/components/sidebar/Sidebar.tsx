@@ -1,35 +1,43 @@
 import Image from 'next/image';
 import {
   IoBrowsersOutline,
-  IoCalculatorOutline,
-  IoFootballOutline,
+  IoCalculator,
+  IoFootball,
+  IoHeartOutline,
   IoLogoReact,
 } from 'react-icons/io5';
-import SidebarMenuItem from './SidebarMenuItem';
-import type { IMenuItem } from '../interfaces';
 
-const menuItems: IMenuItem[] = [
+import { SidebarMenuItem } from './SidebarMenuItem';
+import { MenuItem } from '@/common/interfaces';
+
+const menuItems: MenuItem[] = [
   {
-    path: '/dashboard/main',
-    title: 'Dashboard',
-    subtitle: 'Visualization',
+    href: '/dashboard/main',
     icon: <IoBrowsersOutline size={40} />,
+    title: 'Dashboard',
+    subtitle: 'Visualización',
   },
   {
-    path: '/dashboard/counter',
+    href: '/dashboard/counter',
+    icon: <IoCalculator size={40} />,
     title: 'Counter',
-    subtitle: 'Client side counter',
-    icon: <IoCalculatorOutline size={40} />,
+    subtitle: 'Contador Client Side',
   },
   {
-    path: '/dashboard/pokemons',
-    title: "Pokemon's",
-    subtitle: 'Static generation',
-    icon: <IoFootballOutline size={40} />,
+    href: '/dashboard/pokemons',
+    icon: <IoFootball size={40} />,
+    title: 'Pokemons',
+    subtitle: 'Generación Estática',
+  },
+  {
+    href: '/dashboard/favorites',
+    icon: <IoHeartOutline size={40} />,
+    title: 'Favoritos',
+    subtitle: 'Global State',
   },
 ];
 
-const Sidebar = () => {
+export const Sidebar = () => {
   return (
     <div
       id='menu'
@@ -39,13 +47,14 @@ const Sidebar = () => {
       <div id='logo' className='px-6 my-4'>
         <h1 className='flex items-center text-lg font-bold text-white md:text-2xl'>
           <IoLogoReact className='mr-2' />
-          <span>Dash</span>
+          <span> Dash</span>
           <span className='text-blue-500'>8</span>.
         </h1>
         <p className='text-sm text-slate-500'>
           Manage your actions and activities
         </p>
       </div>
+
       <div id='profile' className='px-6 py-10'>
         <p className='text-slate-500'>Welcome back,</p>
         <a href='#' className='inline-flex items-center space-x-2'>
@@ -56,26 +65,18 @@ const Sidebar = () => {
               alt='User avatar'
               width={50}
               height={50}
+              priority
             />
           </span>
-          <span className='text-sm font-bold md:text-base'>
-            Pablo Rodríguez
-          </span>
+          <span className='text-sm font-bold md:text-base'>Jonas Harris</span>
         </a>
       </div>
+
       <div id='nav' className='w-full px-6'>
-        {menuItems.map(({ icon, title, subtitle, path }) => (
-          <SidebarMenuItem
-            key={path}
-            path={path}
-            title={title}
-            subtitle={subtitle}
-            icon={icon}
-          />
+        {menuItems.map((item) => (
+          <SidebarMenuItem key={item.href} {...item} />
         ))}
       </div>
     </div>
   );
 };
-
-export default Sidebar;

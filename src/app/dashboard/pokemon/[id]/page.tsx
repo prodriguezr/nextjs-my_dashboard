@@ -1,26 +1,27 @@
-import { PokemonsReponse, getPokemonByName, getPokemons } from '@/pokemons';
+import { Pokemon, getPokemonById } from '@/pokemons';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 interface Props {
-  params: { name: string };
+  params: { id: string };
 }
 
 export async function generateStaticParams() {
-  const pokemons = await getPokemons(20);
+  const pokemons = Array.from({ length: 20 }).map((v, i) => `${i + 1}`);
 
-  return pokemons.map(({ name }) => ({
-    name,
+  return pokemons.map((id) => ({
+    id,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const { id, name } = await getPokemonByName(params.name);
+    const { id, name } = await getPokemonById(params.id);
 
     return {
       title: `#${id} - ${name}`,
-      description: `Pokemon page ${name}`,
+      description: `Pokemon Page ${name}`,
     };
   } catch (error) {
     return {
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PokemonPage({ params }: Props) {
-  const pokemon = await getPokemonByName(params.name);
+  const pokemon = await getPokemonById(params.id);
 
   return (
     <div className='flex flex-col items-center mt-5 text-slate-800'>

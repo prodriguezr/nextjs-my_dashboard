@@ -1,2 +1,4 @@
-export { default as PokemonCard } from './PokemonCard';
-export { default as PokemonGrid } from './PokemonGrid';
+export * from './PokemonCard';
+export * from './PokemonFavorite';
+export * from './FavoritesPokemon';
+export * from './PokemonGrid';
